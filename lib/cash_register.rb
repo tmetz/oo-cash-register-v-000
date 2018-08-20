@@ -12,6 +12,7 @@ class CashRegister
     for i in 1..quantity do
       @items << title
     end
+    @last_item_price = price
   end
 
   def apply_discount
@@ -21,6 +22,10 @@ class CashRegister
       @total = @total * (100 - @discount) / 100
       return "After the discount, the total comes to $#{@total.to_i}."
     end
+  end
+
+  def void_last_transaction
+    @total -= @last_item_price
   end
 
 end
